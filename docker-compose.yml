@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${NODE_ENV} # image akan menyesuaikan tergantung mode development atau production
+    container_name: ${CONTAINER_NAME}
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ./:/home/node/app
+    networks:
+      - multi-services
+    restart: always
+    command: sh -c 'npm install && if [ "$NODE_ENV" = "development" ]; then npm run start; else pm2-runtime bin/www; fi'
+
+networks:
+  multi-services:
+    external: true
