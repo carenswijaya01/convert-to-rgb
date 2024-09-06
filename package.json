@@ -1,8 +1,8 @@
 {
   "name": "convert-to-rgb",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,6 +13,7 @@
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
     "multer": "^1.4.5-lts.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "dotenv": "^16.3.1"
   }
 }
