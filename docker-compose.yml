@@ -8,13 +8,13 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT}:3000
     volumes:
       - ./:/home/node/app
     networks:
       - multi-services
     restart: always
-    command: sh -c 'npm install && if [ "$NODE_ENV" = "development" ]; then npm run start; else pm2-runtime bin/www; fi'
+    command: sh -c 'npm install && if [ "$NODE_ENV" = "development" ]; then npm run start; else pm2-runtime ./server.js; fi'
 
 networks:
   multi-services:

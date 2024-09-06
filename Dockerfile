@@ -37,4 +37,4 @@ USER node
 COPY --chown=node:node . .
 
 # Start single instances using pm2
-CMD ["pm2-runtime", "bin/www"]
+CMD ["pm2-runtime", "./server.js"]
