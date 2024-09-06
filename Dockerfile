@@ -1,15 +1,9 @@
 # Base image
 FROM node:20-alpine as base
 
-# Set the working directory inside the container
-WORKDIR /home/node/app
-
 # Set Workdir
-RUN chown -R node:node /home/node/app
-
-# Install dependencies as the node user
-USER node
-
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
 
 # Copy all (exclude by .dockerignore) to /home/node/app
 COPY . .
@@ -23,8 +17,8 @@ RUN npm install
 FROM base as development
 RUN npm install -g nodemon
 
-# # Set Non Root User
-# USER node
+# Set Non Root User
+USER node
 
 # Set permissions to node:node
 COPY --chown=node:node . .
@@ -36,8 +30,8 @@ FROM base as production
 RUN npm install -g pm2
 
 
-# # Set Non Root User
-# USER node
+# Set Non Root User
+USER node
 
 # Set permissions to node:node
 COPY --chown=node:node . .
